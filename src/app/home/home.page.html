@@ -18,9 +18,9 @@
       <ion-label>
         <h2> {{ todo.data().todo_title }} </h2>
         <h3>{{ todo.data().todo_date.toDate() }} </h3>
-        <p>{{ todo.data().todo_description }} </p>
+        <p>{{ todo.data().todo_description }} {{ todo.data().enabled }} </p>
       </ion-label>
-      <ion-button slot="end" [disabled]="!getEnabledStatus(todo)">Edit</ion-button>
+      <ion-button slot="end" color="secondary" [disabled]="!getEnabledStatus(todo.data())">Edit</ion-button>
     </ion-item>
   </ion-list>
 

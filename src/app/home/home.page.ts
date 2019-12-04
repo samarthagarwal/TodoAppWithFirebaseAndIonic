@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController, ToastController } from '@ionic/angular';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -9,7 +9,7 @@ import 'firebase/firestore';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
   userId: string;
   todos: any[] = [];
@@ -18,6 +18,10 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
+    
+  }
+
+  ngOnInit() {
     try {
       this.userId = firebase.auth().currentUser.uid;
       console.log(this.userId);
@@ -43,14 +47,9 @@ export class HomePage {
   }
 
   getEnabledStatus(todo) {
-
-    if(todo.enabled == undefined) {
+    if(todo.enabled === undefined) {
       return true;
-    } else if(todo.enabled == false) {
-      return false;
-    } else {
-      return true;
-    }
+    } else return todo.enabled;
   }
 
   async showCreateDialog() {
